@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="494972e7-63ec-494a-9951-ff0e690b2379" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ArrayList" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/BacLabServer" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="BacLabServer.xsd" MetadataType="Schema" ID="bce83bbe-367b-4d20-bf8e-87e58355f936" SourceId="1" SourceUrl="http://localhost/BacLabServer?xsd=xsd0" />
+    <MetadataFile FileName="BacLabServer1.xsd" MetadataType="Schema" ID="9e76cd11-c0ea-44fe-8846-fb72c136ccd9" SourceId="1" SourceUrl="http://localhost/BacLabServer?xsd=xsd1" />
+    <MetadataFile FileName="BacLabServer.disco" MetadataType="Disco" ID="79b17f03-ed1d-4493-b5c7-aa3e72f3d8d1" SourceId="1" SourceUrl="http://localhost/BacLabServer?disco" />
+    <MetadataFile FileName="Test.wsdl" MetadataType="Wsdl" ID="3441928a-16d4-47dd-9994-96d8c752f70d" SourceId="1" SourceUrl="http://localhost/BacLabServer?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

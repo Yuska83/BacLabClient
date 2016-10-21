@@ -1,0 +1,2 @@
+c:\users\ифслдфи\documents\visual studio 2015\Projects\BacLabClient\BacLabClient\bin\Debug\BacLabClient.exe.config
+C:\Users\admin\Documents\Visual Studio 2015\Projects\BacLabClient\BacLabClient\bin\Debug\BacLabClient.exe.config
