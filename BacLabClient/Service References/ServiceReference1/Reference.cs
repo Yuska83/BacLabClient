@@ -12,113 +12,200 @@ namespace BacLabClient.ServiceReference1 {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.ITest", CallbackContract=typeof(BacLabClient.ServiceReference1.ITestCallback))]
-    public interface ITest {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IMessageService", CallbackContract=typeof(BacLabClient.ServiceReference1.IMessageServiceCallback))]
+    public interface IMessageService {
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITest/testMetod")]
-        void testMetod(string str);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/AddMessage")]
+        void AddMessage(int senderId, string message);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/ITest/testMetod")]
-        System.IAsyncResult BegintestMetod(string str, System.AsyncCallback callback, object asyncState);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IMessageService/AddMessage")]
+        System.IAsyncResult BeginAddMessage(int senderId, string message, System.AsyncCallback callback, object asyncState);
         
-        void EndtestMetod(System.IAsyncResult result);
+        void EndAddMessage(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMessageService/Subscribe", ReplyAction="http://tempuri.org/IMessageService/SubscribeResponse")]
+        bool Subscribe(string adress);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IMessageService/Subscribe", ReplyAction="http://tempuri.org/IMessageService/SubscribeResponse")]
+        System.IAsyncResult BeginSubscribe(string adress, System.AsyncCallback callback, object asyncState);
+        
+        bool EndSubscribe(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ITestCallback {
+    public interface IMessageServiceCallback {
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITest/ShowMessage")]
-        void ShowMessage(string message);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMessageService/OnMessageAdded")]
+        void OnMessageAdded(string message, System.DateTime timestamp);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/ITest/ShowMessage")]
-        System.IAsyncResult BeginShowMessage(string message, System.AsyncCallback callback, object asyncState);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IMessageService/OnMessageAdded")]
+        System.IAsyncResult BeginOnMessageAdded(string message, System.DateTime timestamp, System.AsyncCallback callback, object asyncState);
         
-        void EndShowMessage(System.IAsyncResult result);
+        void EndOnMessageAdded(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ITestChannel : BacLabClient.ServiceReference1.ITest, System.ServiceModel.IClientChannel {
+    public interface IMessageServiceChannel : BacLabClient.ServiceReference1.IMessageService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class TestClient : System.ServiceModel.DuplexClientBase<BacLabClient.ServiceReference1.ITest>, BacLabClient.ServiceReference1.ITest {
+    public partial class SubscribeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
-        private BeginOperationDelegate onBegintestMetodDelegate;
+        private object[] results;
         
-        private EndOperationDelegate onEndtestMetodDelegate;
+        public SubscribeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
         
-        private System.Threading.SendOrPostCallback ontestMetodCompletedDelegate;
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class MessageServiceClient : System.ServiceModel.DuplexClientBase<BacLabClient.ServiceReference1.IMessageService>, BacLabClient.ServiceReference1.IMessageService {
         
-        public TestClient(System.ServiceModel.InstanceContext callbackInstance) : 
+        private BeginOperationDelegate onBeginAddMessageDelegate;
+        
+        private EndOperationDelegate onEndAddMessageDelegate;
+        
+        private System.Threading.SendOrPostCallback onAddMessageCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginSubscribeDelegate;
+        
+        private EndOperationDelegate onEndSubscribeDelegate;
+        
+        private System.Threading.SendOrPostCallback onSubscribeCompletedDelegate;
+        
+        public MessageServiceClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {
         }
         
-        public TestClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+        public MessageServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
                 base(callbackInstance, endpointConfigurationName) {
         }
         
-        public TestClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+        public MessageServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
                 base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public TestClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public MessageServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public TestClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public MessageServiceClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> testMetodCompleted;
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AddMessageCompleted;
         
-        public void testMetod(string str) {
-            base.Channel.testMetod(str);
+        public event System.EventHandler<SubscribeCompletedEventArgs> SubscribeCompleted;
+        
+        public void AddMessage(int senderId, string message) {
+            base.Channel.AddMessage(senderId, message);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IAsyncResult BegintestMetod(string str, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BegintestMetod(str, callback, asyncState);
+        public System.IAsyncResult BeginAddMessage(int senderId, string message, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAddMessage(senderId, message, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public void EndtestMetod(System.IAsyncResult result) {
-            base.Channel.EndtestMetod(result);
+        public void EndAddMessage(System.IAsyncResult result) {
+            base.Channel.EndAddMessage(result);
         }
         
-        private System.IAsyncResult OnBegintestMetod(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            string str = ((string)(inValues[0]));
-            return this.BegintestMetod(str, callback, asyncState);
+        private System.IAsyncResult OnBeginAddMessage(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            int senderId = ((int)(inValues[0]));
+            string message = ((string)(inValues[1]));
+            return this.BeginAddMessage(senderId, message, callback, asyncState);
         }
         
-        private object[] OnEndtestMetod(System.IAsyncResult result) {
-            this.EndtestMetod(result);
+        private object[] OnEndAddMessage(System.IAsyncResult result) {
+            this.EndAddMessage(result);
             return null;
         }
         
-        private void OntestMetodCompleted(object state) {
-            if ((this.testMetodCompleted != null)) {
+        private void OnAddMessageCompleted(object state) {
+            if ((this.AddMessageCompleted != null)) {
                 InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.testMetodCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+                this.AddMessageCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
             }
         }
         
-        public void testMetodAsync(string str) {
-            this.testMetodAsync(str, null);
+        public void AddMessageAsync(int senderId, string message) {
+            this.AddMessageAsync(senderId, message, null);
         }
         
-        public void testMetodAsync(string str, object userState) {
-            if ((this.onBegintestMetodDelegate == null)) {
-                this.onBegintestMetodDelegate = new BeginOperationDelegate(this.OnBegintestMetod);
+        public void AddMessageAsync(int senderId, string message, object userState) {
+            if ((this.onBeginAddMessageDelegate == null)) {
+                this.onBeginAddMessageDelegate = new BeginOperationDelegate(this.OnBeginAddMessage);
             }
-            if ((this.onEndtestMetodDelegate == null)) {
-                this.onEndtestMetodDelegate = new EndOperationDelegate(this.OnEndtestMetod);
+            if ((this.onEndAddMessageDelegate == null)) {
+                this.onEndAddMessageDelegate = new EndOperationDelegate(this.OnEndAddMessage);
             }
-            if ((this.ontestMetodCompletedDelegate == null)) {
-                this.ontestMetodCompletedDelegate = new System.Threading.SendOrPostCallback(this.OntestMetodCompleted);
+            if ((this.onAddMessageCompletedDelegate == null)) {
+                this.onAddMessageCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAddMessageCompleted);
             }
-            base.InvokeAsync(this.onBegintestMetodDelegate, new object[] {
-                        str}, this.onEndtestMetodDelegate, this.ontestMetodCompletedDelegate, userState);
+            base.InvokeAsync(this.onBeginAddMessageDelegate, new object[] {
+                        senderId,
+                        message}, this.onEndAddMessageDelegate, this.onAddMessageCompletedDelegate, userState);
+        }
+        
+        public bool Subscribe(string adress) {
+            return base.Channel.Subscribe(adress);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginSubscribe(string adress, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginSubscribe(adress, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public bool EndSubscribe(System.IAsyncResult result) {
+            return base.Channel.EndSubscribe(result);
+        }
+        
+        private System.IAsyncResult OnBeginSubscribe(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string adress = ((string)(inValues[0]));
+            return this.BeginSubscribe(adress, callback, asyncState);
+        }
+        
+        private object[] OnEndSubscribe(System.IAsyncResult result) {
+            bool retVal = this.EndSubscribe(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnSubscribeCompleted(object state) {
+            if ((this.SubscribeCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.SubscribeCompleted(this, new SubscribeCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void SubscribeAsync(string adress) {
+            this.SubscribeAsync(adress, null);
+        }
+        
+        public void SubscribeAsync(string adress, object userState) {
+            if ((this.onBeginSubscribeDelegate == null)) {
+                this.onBeginSubscribeDelegate = new BeginOperationDelegate(this.OnBeginSubscribe);
+            }
+            if ((this.onEndSubscribeDelegate == null)) {
+                this.onEndSubscribeDelegate = new EndOperationDelegate(this.OnEndSubscribe);
+            }
+            if ((this.onSubscribeCompletedDelegate == null)) {
+                this.onSubscribeCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnSubscribeCompleted);
+            }
+            base.InvokeAsync(this.onBeginSubscribeDelegate, new object[] {
+                        adress}, this.onEndSubscribeDelegate, this.onSubscribeCompletedDelegate, userState);
         }
     }
 }

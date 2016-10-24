@@ -17,24 +17,30 @@ using System.ServiceModel;
 
 namespace BacLabClient
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window, ITestCallback
+   
+    [CallbackBehavior(UseSynchronizationContext = false)]
+    public partial class MainWindow : Window, IMessageServiceCallback
     {
-        TestClient proxy;
-
+        MessageServiceClient proxy;
+        
         public MainWindow()
         {
             InitializeComponent();
 
-            InstanceContext instanceContext = new InstanceContext(new CallbackHandler());
-            proxy = new TestClient(instanceContext);
+            // Получение имени компьютера.
+            String host = System.Net.Dns.GetHostName();
+            // Получение ip-адреса.
+            System.Net.IPAddress ip = System.Net.Dns.GetHostByName(host).AddressList[0];
+            // Показ адреса в label'е.
+            adressTextBox.Text = ip.ToString();
+
+            InstanceContext instanceContext = new InstanceContext(this);
+            proxy = new MessageServiceClient(instanceContext);
 
             //ассинхроный вызов службы
-            //IAsyncResult res = proxy.BegintestMetod("HelloAsy", MyCallBack, proxy);
-
-
+            //Подписываемся на общие сообщения
+            IAsyncResult res = proxy.BeginSubscribe(ip.ToString()+" "+ host, MyCallBack, proxy);
+            
         }
 
 
@@ -42,27 +48,44 @@ namespace BacLabClient
         static void MyCallBack(IAsyncResult ar)
         {
             //если есть возвращаемое значение, его присвоить
-            ((TestClient)ar.AsyncState).EndtestMetod(ar);
+            bool res =((MessageServiceClient)ar.AsyncState).EndSubscribe(ar);
+            MessageBox.Show(res.ToString());
         }
 
-        public IAsyncResult BeginShowMessage(string message, AsyncCallback callback, object asyncState)
-        {
-            throw new NotImplementedException();
-        }
+        
 
-        public void EndShowMessage(IAsyncResult result)
-        {
-            throw new NotImplementedException();
-        }
 
-        public void ShowMessage(string message)
-        {
-            throw new NotImplementedException();
-        }
+
+
+        //*******************************************************************************
+        //реализация рассылки общих сообщений
 
         private void myButton_Click(object sender, RoutedEventArgs e)
         {
-            proxy.testMetod("Hello");
+            proxy.AddMessage(1, adressTextBox.Text);
         }
+        public IAsyncResult BeginOnMessageAdded(string message, DateTime timestamp, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndOnMessageAdded(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnMessageAdded(string message, DateTime timestamp)
+        {
+            MessageBox.Show(message);
+
+            //доступ к контролу из другого потока 
+            /*myTextBox.Dispatcher.Invoke(new Action(delegate ()
+            {
+                myTextBox.Text = message + timestamp.ToString();
+            }));*/
+            
+        }
+        
+       
     }
 }

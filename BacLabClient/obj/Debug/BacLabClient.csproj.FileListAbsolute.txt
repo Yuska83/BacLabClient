@@ -1,2 +1,17 @@
 c:\users\ифслдфи\documents\visual studio 2015\Projects\BacLabClient\BacLabClient\bin\Debug\BacLabClient.exe.config
 C:\Users\admin\Documents\Visual Studio 2015\Projects\BacLabClient\BacLabClient\bin\Debug\BacLabClient.exe.config
+C:\Users\admin\Documents\Visual Studio 2015\Projects\BacLabClient\BacLabClient\obj\Debug\BacLabClient.csprojResolveAssemblyReference.cache
+C:\Users\admin\Documents\Visual Studio 2015\Projects\BacLabClient\BacLabClient\obj\Debug\MainWindow.g.cs
+C:\Users\admin\Documents\Visual Studio 2015\Projects\BacLabClient\BacLabClient\obj\Debug\Window1.g.cs
+C:\Users\admin\Documents\Visual Studio 2015\Projects\BacLabClient\BacLabClient\obj\Debug\App.g.cs
+C:\Users\admin\Documents\Visual Studio 2015\Projects\BacLabClient\BacLabClient\obj\Debug\BacLabClient_MarkupCompile.cache
+C:\Users\admin\Documents\Visual Studio 2015\Projects\BacLabClient\BacLabClient\obj\Debug\BacLabClient_MarkupCompile.lref
+C:\Users\admin\Documents\Visual Studio 2015\Projects\BacLabClient\BacLabClient\bin\Debug\BacLabClient.exe
+C:\Users\admin\Documents\Visual Studio 2015\Projects\BacLabClient\BacLabClient\bin\Debug\BacLabClient.pdb
+C:\Users\admin\Documents\Visual Studio 2015\Projects\BacLabClient\BacLabClient\obj\Debug\MainWindow.baml
+C:\Users\admin\Documents\Visual Studio 2015\Projects\BacLabClient\BacLabClient\obj\Debug\Window1.baml
+C:\Users\admin\Documents\Visual Studio 2015\Projects\BacLabClient\BacLabClient\obj\Debug\BacLabClient.g.resources
+C:\Users\admin\Documents\Visual Studio 2015\Projects\BacLabClient\BacLabClient\obj\Debug\BacLabClient.Properties.Resources.resources
+C:\Users\admin\Documents\Visual Studio 2015\Projects\BacLabClient\BacLabClient\obj\Debug\BacLabClient.csproj.GenerateResource.Cache
+C:\Users\admin\Documents\Visual Studio 2015\Projects\BacLabClient\BacLabClient\obj\Debug\BacLabClient.exe
+C:\Users\admin\Documents\Visual Studio 2015\Projects\BacLabClient\BacLabClient\obj\Debug\BacLabClient.pdb

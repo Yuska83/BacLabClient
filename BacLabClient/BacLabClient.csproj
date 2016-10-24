@@ -111,7 +111,7 @@
     <None Include="Service References\ServiceReference1\BacLabServer1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\Test.wsdl" />
+    <None Include="Service References\ServiceReference1\MessageService.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
